@@ -1,0 +1,95 @@
+@font-face {
+  font-family: "rajdhani";
+  src: url("./fonts/RAJDHANI-SEMIBOLD.TTF");
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #0a0a0a;
+  font-family: Arial, Helvetica, sans-serif;
+  height: 100vh;
+  overflow-y: scroll;
+}
+
+/* Scrollbar degradado */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #007BFF, #E52B9B);
+  border-radius: 20px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* CONTENEDOR */
+#menuContainer {
+  position: fixed;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  z-index: 10;
+}
+
+/* LOGO circular */
+#logo {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: left .7s ease, transform .6s ease;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Logo a la izquierda cuando está activo */
+#menuContainer.active #logo {
+  left: 0;
+  transform: translateX(0);
+}
+
+/* MENU */
+#menu {
+  display: flex;
+  gap: 18px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Animación progresiva de items */
+#menu a {
+  font-family: "rajdhani";
+  text-decoration: none;
+  color: white;
+  padding: 8px 18px;
+  border-radius: 25px;
+  background: rgba(255, 255, 255, 0.07);
+  transition: background .3s ease, transform .4s ease, opacity .4s ease;
+  opacity: 0;
+  transform: translateY(-5px);
+}
+
+#menuContainer.active #menu {
+  pointer-events: all;
+  opacity: 1;
+}
+
+/* Animación en cascada */
+#menuContainer.active #menu a:nth-child(1) { transition-delay: .10s; opacity: 1; transform: translateY(0); }
+#menuContainer.active #menu a:nth-child(2) { transition-delay: .25s; opacity: 1; transform: translateY(0); }
+#menuContainer.active #menu a:nth-child(3) { transition-delay: .35s; opacity: 1; transform: translateY(0); }
+#menuContainer.active #menu a:nth-child(4) { transition-delay: .45s; opacity: 1; transform: translateY(0); }
+
+#menu a:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
