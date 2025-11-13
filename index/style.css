@@ -3,6 +3,11 @@
   src: url("./fonts/RAJDHANI-SEMIBOLD.TTF");
 }
 
+@font-face {
+  font-family: "inter";
+  src: url("./fonts/INTER-REGULAR.TTF");
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -10,7 +15,7 @@
 }
 
 body {
-  background: #0a0a0a;
+  background: #0d131f;
   font-family: Arial, Helvetica, sans-serif;
   height: 100vh;
   overflow-y: scroll;
@@ -94,6 +99,7 @@ body {
   background: rgba(255, 255, 255, 0.25);
 }
 
+/* Secciones*/
 .section {
   min-height: 100vh;
   display: flex;
@@ -106,14 +112,16 @@ body {
   z-index: 1;
 }
 
+/* Texto generado automaticamente */
 .typed-text { 
+  font-family: "inter";
   color: white;
-  font-size: 1.2rem; 
+  font-size: 19px; 
   opacity: .8; 
 }
 
-.nombre {
-  font-size: 3rem;
+h1 {
+  font-size: 48px;
   background: linear-gradient(90deg, #007BFF, #E52B9B);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -126,8 +134,36 @@ body {
   justify-content: center;
   margin-top: 25px;
 }
+
 .redes-sociales svg {
   width: 60px; height: 60px;
   filter: drop-shadow(0 0 8px rgba(255,255,255,0.3));
   transition: transform .3s ease;
+}
+
+/* SOBRE MÍ */
+.contenedor-sobre-mi {
+  display: flex;
+  gap: 40px;
+  background: rgba(255,255,255,0.07);
+  padding: 40px;
+  border-radius: 20px;
+  max-width: 800px;
+  align-items: center;
+}
+
+.foto-perfil img {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 15px rgba(229,43,155,0.4);
+}
+
+/* Parrafo sobreMi*/
+.parrafos { 
+  font-family: "inter";
+  color: white;
+  text-align: left; 
+  line-height: 1.6; 
 }
