@@ -151,6 +151,20 @@ h1 {
   border-radius: 20px;
   max-width: 800px;
   align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Línea lateral degradada */
+.contenedor-sobre-mi::before {
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: linear-gradient(180deg, #007BFF, #E52B9B);
+  filter: drop-shadow(0 0 12px rgba(0,123,255,0.5));
 }
 
 .foto-perfil img {
@@ -159,6 +173,14 @@ h1 {
   border-radius: 50%;
   object-fit: cover;
   box-shadow: 0 0 15px rgba(229,43,155,0.4);
+  animation: imgFlotar 4s ease-in-out infinite;
+}
+
+/* Animación flotante de la foto */
+@keyframes imgFlotar {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
 }
 
 /* Parrafo sobreMi*/
