@@ -71,7 +71,7 @@ body {
   pointer-events: none;
 }
 
-/* Animación progresiva de items */
+/* Secciones del menú */
 #menu a {
   font-family: "rajdhani";
   text-decoration: none;
@@ -82,7 +82,31 @@ body {
   transition: background .3s ease, transform .4s ease, opacity .4s ease;
   opacity: 0;
   transform: translateY(-5px);
+  position: relative;
+  overflow: hidden;
 }
+
+
+/* Fondo blanco que sube desde abajo */
+#menu a::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: white;
+  z-index: -1;
+  transform: translateY(100%);
+  transition: transform .25s ease-out;
+}
+
+#menu a:hover {
+  color: black;
+  background: rgba(255, 255, 255, 0.25);
+}
+
+#menu a:hover::before {
+  transform: translateY(0);
+}
+
 
 #menuContainer.active #menu {
   pointer-events: all;
@@ -94,10 +118,6 @@ body {
 #menuContainer.active #menu a:nth-child(2) { transition-delay: .25s; opacity: 1; transform: translateY(0); }
 #menuContainer.active #menu a:nth-child(3) { transition-delay: .35s; opacity: 1; transform: translateY(0); }
 #menuContainer.active #menu a:nth-child(4) { transition-delay: .45s; opacity: 1; transform: translateY(0); }
-
-#menu a:hover {
-  background: rgba(255, 255, 255, 0.25);
-}
 
 /* Secciones*/
 .section {
@@ -142,7 +162,6 @@ h1 {
   transition: transform .3s ease;
 }
 
-/* SOBRE MÍ */
 .contenedor-sobre-mi {
   display: flex;
   gap: 40px;
