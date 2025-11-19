@@ -1,4 +1,4 @@
-// --- SISTEMA DE MENÚ Y TEXTO ANIMADO --- //
+// Sistema de menú interactivo
 const container = document.getElementById("menuContainer");
 const logo = document.getElementById("logo");
 
@@ -41,7 +41,7 @@ function typeEffect() {
 }
 typeEffect();
 
-// --- SISTEMA DE PARTÍCULAS --- //
+// Sistema de partículas de fondo
 const canvas = document.getElementById("particulas");
 const ctx = canvas.getContext("2d");
 
@@ -67,7 +67,6 @@ for (let i = 0; i < totalParticles; i++) {
   });
 }
 
-
 // Partículas de fondo
 function drawParticles() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -86,29 +85,41 @@ function drawParticles() {
 drawParticles();
 
 // FADE-SCROLL
-let ultimaPos = 0;
+let prevScrollY = window.scrollY;
+let lastScrollY = window.scrollY;
 
-function actualizarFadeScroll() {
-  const scrollActual = window.scrollY;
-  const direccion = scrollActual > ultimaPos ? "down" : "up";
+// Actualizamos lastScrollY en cada scroll
+window.addEventListener('scroll', () => {
+  lastScrollY = window.scrollY;
+}, { passive: true });
 
-  document.querySelectorAll(".fade-scroll").forEach(el => {
-    const rect = el.getBoundingClientRect();
-    const visible = rect.top < window.innerHeight * 0.9 && rect.bottom > 0;
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    const el = entry.target;
 
-    if (visible) {
-      el.classList.remove("visible-down", "visible-up");
-      el.classList.add(direccion === "down" ? "visible-down" : "visible-up");
+    if (entry.isIntersecting) {
+      // Determinamos dirección comparando lastScrollY con prevScrollY
+      const direction = lastScrollY > prevScrollY ? 'down' : 'up';
+      const from = direction === 'down' ? '40px' : '-40px';
+
+      // Aplicamos la animación desde la dirección correspondiente
+      el.style.setProperty('--translateY', from);
+      void el.offsetWidth;
+      el.classList.add('visible');
     } else {
-      el.classList.remove("visible-down", "visible-up");
+      // Al salir, simplemente ocultamos el elemento
+      el.classList.remove('visible');
     }
   });
 
-  ultimaPos = scrollActual;
-}
+  // Guardamos la posición previa para la próxima comparación
+  prevScrollY = lastScrollY;
+}, {
+  threshold: 0.15 
+});
 
-window.addEventListener("scroll", actualizarFadeScroll);
-window.addEventListener("load", actualizarFadeScroll);
+// Observamos todos los elementos .fade-scroll
+document.querySelectorAll('.fade-scroll').forEach(el => observer.observe(el));
 
 // Efecto glow
 function activarGlow(selector) {

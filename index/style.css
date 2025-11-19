@@ -210,6 +210,24 @@ h1 {
   line-height: 1.6; 
 }
 
+.btn-cv {
+  display: inline-block;
+  margin-top: 18px;
+  padding: 10px 22px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: bold;
+  background: linear-gradient(90deg, #007BFF, #E52B9B);
+  color: white;
+  transition: .3s ease;
+  box-shadow: 0 0 12px rgba(0,123,255,.3);
+}
+
+.btn-cv:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 20px rgba(229,43,155,.5);
+}
+
 #fondoContainer {
   position: fixed;
   inset: 0;                 
@@ -411,19 +429,16 @@ h1 {
 
 /* Animaciones de aparición al hacer scroll */
 .fade-scroll {
+  --translateY: 40px;               
   opacity: 0;
-  transform: translateY(40px);
+  transform: translateY(var(--translateY));
   transition: opacity .6s ease-out, transform .6s ease-out;
+  will-change: transform, opacity;
 }
 
-.fade-scroll.visible-down {
+.fade-scroll.visible {
   opacity: 1;
   transform: translateY(0);
-}
-
-.fade-scroll.visible-up {
-  opacity: 1;
-  transform: translateY(-20px); /* Animación inversa al subir */
 }
 
 /* Efecto glow */
