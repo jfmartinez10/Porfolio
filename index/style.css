@@ -395,3 +395,20 @@ h1 {
   white-space: nowrap;
   z-index: 3 !important;
 }
+
+/* Animaciones de aparición al hacer scroll */
+.fade-scroll {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity .6s ease-out, transform .6s ease-out;
+}
+
+.fade-scroll.visible-down {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-scroll.visible-up {
+  opacity: 1;
+  transform: translateY(-20px); /* Animación inversa al subir */
+}

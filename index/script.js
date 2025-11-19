@@ -84,3 +84,28 @@ function drawParticles() {
   requestAnimationFrame(drawParticles);
 }
 drawParticles();
+
+// FADE-SCROLL
+let ultimaPos = 0;
+
+function actualizarFadeScroll() {
+  const scrollActual = window.scrollY;
+  const direccion = scrollActual > ultimaPos ? "down" : "up";
+
+  document.querySelectorAll(".fade-scroll").forEach(el => {
+    const rect = el.getBoundingClientRect();
+    const visible = rect.top < window.innerHeight * 0.9 && rect.bottom > 0;
+
+    if (visible) {
+      el.classList.remove("visible-down", "visible-up");
+      el.classList.add(direccion === "down" ? "visible-down" : "visible-up");
+    } else {
+      el.classList.remove("visible-down", "visible-up");
+    }
+  });
+
+  ultimaPos = scrollActual;
+}
+
+window.addEventListener("scroll", actualizarFadeScroll);
+window.addEventListener("load", actualizarFadeScroll);
