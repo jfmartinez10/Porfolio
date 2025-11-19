@@ -109,3 +109,28 @@ function actualizarFadeScroll() {
 
 window.addEventListener("scroll", actualizarFadeScroll);
 window.addEventListener("load", actualizarFadeScroll);
+
+// Efecto glow
+function activarGlow(selector) {
+  document.querySelectorAll(selector).forEach(card => {
+    card.addEventListener("mousemove", e => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      card.style.setProperty("--glow-x", `${x}px`);
+      card.style.setProperty("--glow-y", `${y}px`);
+
+      // distancia del cursor al borde más cercano
+      const distX = Math.min(x, rect.width - x);
+      const distY = Math.min(y, rect.height - y);
+      const dist = Math.min(distX, distY);
+
+      const norma = Math.min(1, dist / (rect.width * 0.5));
+      card.style.setProperty("--dist", norma);
+    });
+  });
+}
+
+// Solo activamos glow en tarjetas de proyectos
+activarGlow(".proyecto");
