@@ -145,3 +145,75 @@ function activarGlow(selector) {
 
 // Solo activamos glow en tarjetas de proyectos
 activarGlow(".proyecto");
+
+// Botón "volver arriba" con scroll suave
+(function () {
+  const btn = document.getElementById('btn-arriba');
+  if (!btn) return;
+
+  const targetEl = document.getElementById('inicio') || document.body;
+  const SHOW_THRESHOLD = 320;
+
+  // Actualiza visibilidad del botón según scroll
+  function updateButtonVisibility() {
+    if (window.scrollY > SHOW_THRESHOLD) {
+      btn.classList.add('show');
+    } else {
+      btn.classList.remove('show');
+    }
+  }
+
+  // Scroll suave hacia el elemento objetivo
+  function scrollToTop() {
+    if (targetEl && typeof targetEl.scrollIntoView === 'function') {
+      targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }
+
+  // Escucha eventos de scroll
+  window.addEventListener('scroll', updateButtonVisibility, { passive: true });
+
+  // Click en el botón
+  btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    scrollToTop();
+    const focusTarget = document.getElementById('inicio') || document.body;
+    if (focusTarget && focusTarget !== document.body) {
+      const prevTabIndex = focusTarget.getAttribute('tabindex');
+      focusTarget.setAttribute('tabindex', '-1');
+      focusTarget.focus({ preventScroll: true });
+      if (prevTabIndex === null) {
+        window.setTimeout(() => focusTarget.removeAttribute('tabindex'), 1000);
+      } else {
+        focusTarget.setAttribute('tabindex', prevTabIndex);
+      }
+    }
+  });
+
+  // Accesibilidad: activar con Espacio
+  btn.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      scrollToTop();
+    }
+  });
+  updateButtonVisibility();
+
+  // detecta cuando el último section está fuera de vista
+  const lastSection = document.querySelector('section:last-of-type');
+  if (lastSection && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(en => {
+        if (!en.isIntersecting) {
+          btn.classList.add('show');
+        } else {
+          if (window.scrollY <= SHOW_THRESHOLD) btn.classList.remove('show');
+        }
+      });
+    }, { threshold: 0.15 });
+    io.observe(lastSection);
+  }
+
+})();

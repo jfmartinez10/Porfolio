@@ -12,6 +12,8 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
 body {
@@ -270,7 +272,7 @@ h1 {
 /* Contenedor proyectos */
 .contenedor-proyectos {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 35px;
   width: 90%;
   max-width: 1200px;
@@ -480,4 +482,62 @@ h1 {
 .proyecto:hover {
   border-color: rgba(0,123,255,0.3);     
   box-shadow: 0 0 30px rgba(0,123,255,0.4);
+}
+
+/* Botón para volver al incio */
+.btn-arriba {
+  position: fixed;
+  right: 30px;
+  bottom: 40px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px) saturate(150%);
+  -webkit-backdrop-filter: blur(10px) saturate(150%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(255,255,255,0.15), inset 0 0 6px rgba(255,255,255,0.25);
+  transform: translateY(15px) scale(0.95);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.35s ease;
+  z-index: 9999;
+}
+
+.btn-arriba svg {
+  width: 26px;
+  height: 26px;
+  fill: currentColor;
+}
+
+/* Boton cuando se muestra */
+.btn-arriba.show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+
+/* Hover con efecto de luz */
+.btn-arriba:hover {
+  box-shadow: 0 6px 28px rgb(255, 255, 255), inset 0 0 10px rgb(255, 255, 255);
+  transform: translateY(-4px) scale(1.05);
+}
+
+.btn-arriba:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255,255,255,0.6);
+}
+
+@media (max-width: 480px) {
+  .btn-arriba {
+    right: 16px;
+    bottom: 22px;
+    width: 50px;
+    height: 50px;
+  }
 }
