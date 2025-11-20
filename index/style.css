@@ -230,6 +230,49 @@ h1 {
   box-shadow: 0 0 20px rgba(229,43,155,.5);
 }
 
+/* Añadir variables del glow */
+.contenedor-sobre-mi {
+  --glow-size: 260px;
+  --glow-x: 50%;
+  --glow-y: 50%;
+  border: 2px solid rgba(0, 123, 255, 0.1); /* borde suave tipo habilidades */
+}
+
+/* Glow detrás del contenido */
+.contenedor-sobre-mi::after {
+  content: "";
+  position: absolute;
+  width: var(--glow-size);
+  height: var(--glow-size);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 123, 255, 0.35), transparent 70%);
+  left: var(--glow-x);
+  top: var(--glow-y);
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease-out;
+  z-index: 0; /* MUY IMPORTANTE: detrás del contenido */
+}
+
+/* Contenido siempre encima */
+.contenedor-sobre-mi > * {
+  position: relative;
+  z-index: 2;
+}
+
+.contenedor-sobre-mi:hover::after {
+  opacity: 0.5;
+}
+
+/* Hover con efecto glow */
+.contenedor-sobre-mi:hover {
+  border-color: rgba(0, 123, 255, 0.3);
+  box-shadow: 0 0 30px rgba(0, 123, 255, 0.4);
+  transform: scale(1.01);
+  transition: 0.3s ease;
+}
+
 #fondoContainer {
   position: fixed;
   inset: 0;                 

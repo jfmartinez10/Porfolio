@@ -146,6 +146,7 @@ function activarGlow(selector) {
 // Solo activamos glow en tarjetas de proyectos y habilidades
 activarGlow(".proyecto");
 activarGlow(".habilidad-tarjeta");
+activarGlow(".contenedor-sobre-mi");
 
 // Botón "volver arriba" con scroll suave
 (function () {
