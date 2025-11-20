@@ -199,7 +199,10 @@ activarGlow(".proyecto");
       scrollToTop();
     }
   });
-  updateButtonVisibility();
+  window.addEventListener('load', () => {
+    btn.classList.remove('show');
+  });
+ 
 
   // detecta cuando el último section está fuera de vista
   const lastSection = document.querySelector('section:last-of-type');
