@@ -121,29 +121,29 @@ const observer = new IntersectionObserver((entries) => {
 // Observamos todos los elementos .fade-scroll
 document.querySelectorAll('.fade-scroll').forEach(el => observer.observe(el));
 
-// Efecto glow
+// EFECTO GLOW
 function activarGlow(selector) {
-  document.querySelectorAll(selector).forEach(card => {
-    card.addEventListener("mousemove", e => {
+  const cards = document.querySelectorAll(selector);
+
+  cards.forEach(card => {
+    card.addEventListener("mousemove", (e) => {
       const rect = card.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
 
       card.style.setProperty("--glow-x", `${x}px`);
       card.style.setProperty("--glow-y", `${y}px`);
+    });
 
-      // distancia del cursor al borde más cercano
-      const distX = Math.min(x, rect.width - x);
-      const distY = Math.min(y, rect.height - y);
-      const dist = Math.min(distX, distY);
-
-      const norma = Math.min(1, dist / (rect.width * 0.5));
-      card.style.setProperty("--dist", norma);
+    card.addEventListener("mouseleave", () => {
+      // Al salir, eliminamos el glow INMEDIATAMENTE
+      card.style.removeProperty("--glow-x");
+      card.style.removeProperty("--glow-y");
     });
   });
 }
 
-// Solo activamos glow en tarjetas de proyectos
+// Solo activamos glow en tarjetas de proyectos y habilidades
 activarGlow(".proyecto");
 activarGlow(".habilidad-tarjeta");
 
