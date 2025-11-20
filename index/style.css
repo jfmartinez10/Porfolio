@@ -541,3 +541,98 @@ h1 {
     height: 50px;
   }
 }
+
+/* Contenedor de habilidades */
+.contenedor-habilidades {
+  display: flex;
+  justify-content: space-between; 
+  gap: 20px;
+  margin-top: 40px;
+  flex-wrap: nowrap;
+}
+
+/* Tarjetas de habilidad */
+.habilidad-tarjeta {
+  background: rgba(255, 255, 255, 0.07);
+  border-radius: 18px;
+  backdrop-filter: blur(8px);
+  border: 2px solid rgba(0, 123, 255, 0.1);
+  padding: 25px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, border-color 0.25s ease-out, box-shadow 0.25s ease-out;
+  --glow-size: 260px;
+  --glow-x: 50%;
+  --glow-y: 50%;
+  --dist: 1;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 32%; 
+  min-height: 250px; 
+  box-sizing: border-box;
+}
+
+/* Glow detrás del contenido */
+.habilidad-tarjeta::before {
+  content: "";
+  position: absolute;
+  width: var(--glow-size);
+  height: var(--glow-size);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 123, 255, 0.35), transparent 70%);
+  left: var(--glow-x);
+  top: var(--glow-y);
+  transform: translate(-50%, -50%);
+  opacity: 0.5;
+  pointer-events: none;
+  transition: opacity 0.25s ease-out;
+  z-index: 0; /* glow detrás del contenido */
+}
+
+/* Contenido encima del glow */
+.habilidad-tarjeta > * {
+  position: relative;
+  z-index: 1;
+}
+
+.habilidad-tarjeta:hover {
+  border-color: rgba(0, 123, 255, 0.3);
+  box-shadow: 0 0 30px rgba(0, 123, 255, 0.4);
+  transform: scale(1.02);
+}
+
+.habilidad-tarjeta h3 {
+  margin-bottom: 15px;
+  font-size: 1.4rem;
+  color: #fff;
+}
+
+.habilidades-lista {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; 
+  gap: 12px;
+  width: 100%;
+}
+
+.habilidades-lista .habilidad {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: rgba(0, 123, 255, 0.15);
+  padding: 8px 16px; 
+  border-radius: 12px;
+  font-size: 1rem; 
+  color: #d1e8ff;
+  border: 1px solid rgba(0, 123, 255, 0.3);
+
+  img {
+    width: 45px; 
+    height: 45px;
+    object-fit: contain;
+  }
+}
