@@ -147,6 +147,7 @@ function activarGlow(selector) {
 activarGlow(".proyecto");
 activarGlow(".habilidad-tarjeta");
 activarGlow(".contenedor-sobre-mi");
+activarGlow(".contenedor-contacto");
 
 // Botón "volver arriba" con scroll suave
 (function () {
@@ -222,3 +223,58 @@ activarGlow(".contenedor-sobre-mi");
   }
 
 })();
+
+// Código del formulario de contacto
+const form = document.querySelector('#formularioContacto'); 
+const inputs = form.querySelectorAll('input, textarea');
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  let valido = true;
+  let datos = {};
+
+  inputs.forEach(campo => {
+    const valor = campo.value.trim();
+    if (!valor) {
+      valido = false;
+      campo.style.borderColor = '#ff4a4a';
+      campo.style.boxShadow = '0 0 10px #ff4a4a';
+    } else {
+      campo.style.borderColor = '#007BFF';
+      campo.style.boxShadow = '0 0 10px #007BFF';
+      datos[campo.name] = valor;
+    }
+  });
+
+  if (!valido) return;
+
+  const emailDestino = "jfmartinez383@gmail.com";
+
+  const asunto = encodeURIComponent(datos.asunto);
+  const cuerpo = encodeURIComponent(
+    `Nombre: ${datos.nombre}\n` +
+    `Correo: ${datos.correo}\n\n` +
+    `Mensaje:\n${datos.mensaje}`
+  );
+
+  const mailtoURL = `mailto:${emailDestino}?subject=${asunto}&body=${cuerpo}`;
+
+  // Mostrar mensaje de éxito
+  const mensajeGlobal = document.getElementById('mensajeGlobal');
+  mensajeGlobal.textContent = "Mensaje listo para enviar. Revísalo en tu cliente de correo.";
+  mensajeGlobal.style.display = "block";
+
+  // Ocultar tras unos segundos
+  setTimeout(() => {
+    mensajeGlobal.style.display = "none";
+  }, 4500);
+
+  // Limpiar formulario
+  form.reset();
+
+  // Abrir cliente de correo
+  setTimeout(() => {
+    window.location.href = mailtoURL;
+  }, 500);
+});
