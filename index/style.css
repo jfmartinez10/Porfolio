@@ -153,15 +153,27 @@ h1 {
 
 .redes-sociales {
   display: flex;
-  gap: 25px;
   justify-content: center;
   margin-top: 25px;
 }
 
 .redes-sociales svg {
-  width: 60px; height: 60px;
-  filter: drop-shadow(0 0 8px rgba(255,255,255,0.3));
-  transition: transform .3s ease;
+  width: 80px;
+  height: 80px;
+  filter: drop-shadow(0 0 3px rgba(255,255,255,0.3));
+  transition: transform .35s ease, filter .35s ease;
+}
+
+/* Hover inclinado a la drch */
+.redes-sociales a:nth-child(1):hover svg {
+  transform: scale(1.25) rotate(3deg);
+  filter: drop-shadow(0 0 12px #ffffff);
+}
+
+/* Hover inclinado a la izq */
+.redes-sociales a:nth-child(2):hover svg {
+  transform: scale(1.25) rotate(-3deg);
+  filter: drop-shadow(0 0 12px #ffffff);
 }
 
 .contenedor-sobre-mi {
