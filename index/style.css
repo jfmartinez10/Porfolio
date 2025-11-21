@@ -879,3 +879,11 @@ h1 {
   80% { opacity: 1; }
   100% { opacity: 0; display: none; }
 }
+
+.footer {
+  margin-top: 60px;
+  padding: 25px 0;
+  text-align: center;
+  color: rgba(255,255,255,0.75);
+  font-size: 15px;
+}
