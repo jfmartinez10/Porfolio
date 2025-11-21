@@ -887,3 +887,159 @@ h1 {
   color: rgba(255,255,255,0.75);
   font-size: 15px;
 }
+
+/* RESPONSIVE MÓVIL */
+
+@media (max-width: 768px) {
+
+  /* Ajuste de secciones */
+  .section {
+    padding: 80px 20px;
+  }
+
+  /* Menú */
+  #menuContainer {
+    gap: 12px;
+    top: 10px;
+  }
+
+  #logo {
+    width: 60px;
+    height: 60px;
+  }
+
+  #menu a {
+    padding: 6px 14px;
+    font-size: 14px;
+  }
+
+  /* Iconos redes sociales */
+  .redes-sociales svg {
+    width: 58px;
+    height: 58px;
+  }
+
+  /* SOBRE MÍ */
+  .contenedor-sobre-mi {
+    flex-direction: column;
+    text-align: center;
+    gap: 25px;
+    padding: 30px;
+  }
+
+  .parrafos {
+    text-align: center;
+  }
+
+  .foto-perfil img {
+    width: 135px;
+    height: 135px;
+  }
+
+  /* Ptoyectos */
+  .contenedor-proyectos {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 28px;
+  }
+
+  .proyecto {
+    height: auto;
+    padding-bottom: 22px;
+  }
+
+  .proyecto-img {
+    height: 180px;
+  }
+
+  /* Habilidades */
+  .contenedor-habilidades {
+    flex-direction: column;
+    gap: 25px;
+  }
+
+  .habilidad-tarjeta {
+    width: 100%;
+    min-height: auto;
+  }
+
+  /* Formulario contacto */
+  .contenedor-contacto {
+    padding: 25px;
+    margin-top: 20px;
+  }
+
+  .formulario-contacto input,
+  .formulario-contacto textarea {
+    font-size: 14px;
+    padding: 12px;
+  }
+
+  .btn-enviar-contacto {
+    padding: 12px 24px;
+    font-size: 15px;
+  }
+
+  .frase-contacto {
+    font-size: 15px;
+  }
+
+  .btn-cv {
+    padding: 10px 18px;
+    font-size: 14px;
+  }
+
+  /* Footer */
+  .footer {
+    font-size: 14px;
+    padding: 20px 0;
+  }
+}
+
+
+/* MOVIL PEQUEÑO (MÁX 480PX) */
+
+@media (max-width: 480px) {
+
+  h1 {
+    font-size: 32px;
+  }
+
+  .typed-text {
+    font-size: 16px;
+  }
+
+  .redes-sociales svg {
+    width: 50px;
+    height: 50px;
+  }
+
+  .contenedor-sobre-mi {
+    padding: 25px;
+  }
+
+  .foto-perfil img {
+    width: 120px;
+    height: 120px;
+  }
+
+  .proyecto-img {
+    height: 160px;
+  }
+
+  .habilidades-lista .habilidad {
+    font-size: 13px;
+    padding: 6px 12px;
+  }
+
+  .contenedor-contacto {
+    padding: 20px;
+  }
+
+  .btn-enviar-contacto {
+    width: 100%;
+  }
+
+  .formulario-contacto-container {
+    padding: 20px;
+  }
+}
