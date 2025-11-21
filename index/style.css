@@ -892,6 +892,24 @@ h1 {
 
 @media (max-width: 768px) {
 
+  /* Menú desplegable: limitar altura para que quepa */
+  #menu {
+    max-height: calc(100vh - 100px); /* Altura total de la ventana menos margen superior */
+    overflow-y: auto;
+  }
+
+  /* Barra lateral sobre mí y contacto */
+  .contenedor-sobre-mi::before,
+  .contenedor-contacto::before {
+    position: absolute;
+    width: 6px;
+    height: 100%;
+    border-radius: 4px;
+    background: linear-gradient(180deg, #007BFF, #E52B9B);
+    left: 0;
+    top: 0;
+  }
+
   /* Ajuste de secciones */
   .section {
     padding: 80px 20px;
@@ -999,6 +1017,24 @@ h1 {
 /* MOVIL PEQUEÑO (MÁX 480PX) */
 
 @media (max-width: 480px) {
+
+  /* Menú desplegable más compacto */
+  #menu {
+    max-height: calc(100vh - 60px);
+    overflow-y: auto;
+  }
+
+  /* Barra lateral sobre mí y contacto */
+  .contenedor-sobre-mi::before,
+  .contenedor-contacto::before {
+    position: absolute;
+    width: 5px;
+    height: 100%;
+    border-radius: 4px;
+    background: linear-gradient(180deg, #007BFF, #E52B9B);
+    left: 0;
+    top: 0;
+  }
 
   h1 {
     font-size: 32px;
