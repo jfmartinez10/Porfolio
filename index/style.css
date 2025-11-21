@@ -892,10 +892,11 @@ h1 {
 
 @media (max-width: 768px) {
 
-  /* Menú desplegable: limitar altura para que quepa */
+  /* Menú desplegable
   #menu {
-    max-height: calc(100vh - 100px); /* Altura total de la ventana menos margen superior */
+    max-height: 45vh; 
     overflow-y: auto;
+    padding-right: 6px;
   }
 
   /* Barra lateral sobre mí y contacto */
@@ -1020,8 +1021,9 @@ h1 {
 
   /* Menú desplegable más compacto */
   #menu {
-    max-height: calc(100vh - 60px);
+    max-height: 50vh; 
     overflow-y: auto;
+    padding-right: 8px; 
   }
 
   /* Barra lateral sobre mí y contacto */
