@@ -55,7 +55,7 @@ window.addEventListener("resize", resizeCanvas);
 
 // Crear partículas
 const particles = [];
-const totalParticles = 90; 
+const totalParticles = 70; 
 
 for (let i = 0; i < totalParticles; i++) {
   particles.push({
